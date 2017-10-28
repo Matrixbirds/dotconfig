@@ -1,0 +1,17 @@
+Host ssh_name
+  HostName <domain>
+  Port <port>
+  User gay
+  Identityfile ~/.ssh/<file>
+  ProxyCommand nc -X 5 -x <ssr_address:port> %h %p
+
+Host *
+  ServerAliveInterval 15
+  TCPKeepAlive yes
+
+Host local_alias_host
+    HostName <jumpserver_port>
+    Port <jumpserver_port>
+    User <jumpserver_username>
+    Identityfile <jumpserver_identity>
+    LocalForward <local_port> <dest_server_address>:<dest_server_port>
