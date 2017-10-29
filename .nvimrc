@@ -124,8 +124,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 autocmd bufwritepost *.js silent !eslint --fix %
 set autoread
 
-set conceallevel=1
-
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
