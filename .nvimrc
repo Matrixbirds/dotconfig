@@ -5,8 +5,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/vim-github-dashboard'
 Plug 'pangloss/vim-javascript'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
@@ -22,6 +20,8 @@ Plug 'majutsushi/tagbar'
 
 call plug#end()
 
+
+set clipboard+=unnamedplus
 set expandtab
 set backspace=indent,eol,start
 set autoindent                  " Indent at the same level of the previous line
@@ -31,7 +31,7 @@ set softtabstop=4               " Let backspace delete indent
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " a
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.,eol:$
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
 
 " Tabular
@@ -68,7 +68,8 @@ endif
 
 syntax enable
 let g:solarized_termcolors=256
-colorschem solarized
+color zenburn
+
 set background=dark
 " my nvim config
 set nu
@@ -161,3 +162,12 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+let g:loaded_sql_completion = 0
+let g:omni_sql_no_default_maps = 1
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_user_command = ['.git/', 'git ls-files --cached --others  --exclude-standard %s', 'node_modules']
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
