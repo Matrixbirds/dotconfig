@@ -9,7 +9,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'flazz/vim-colorschemes'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdcommenter'
@@ -17,6 +17,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mileszs/ack.vim'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
+Plug 'posva/vim-vue'
+Plug 'isRuslan/vim-es6'
 
 call plug#end()
 
@@ -107,25 +109,25 @@ let g:javascript_plugin_flow =                       1
 "let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 " ale eslint
-let g:ale_fixers = {
-\  'javascript': ['eslint'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_completion_enabled = 1
+"let g:ale_fixers = {
+"\  'javascript': ['eslint'],
+"\}
+""let g:ale_fix_on_save = 1
+"let g:ale_sign_error = '>>'
+"let g:ale_sign_warning = '--'
+"let g:ale_completion_enabled = 1
+"
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-autocmd bufwritepost *.js silent !eslint --fix %
+"autocmd bufwritepost *.js silent !eslint --fix %
 set autoread
 
-let g:airline#extensions#ale#enabled = 1
+"let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '>'
@@ -171,3 +173,6 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
+" patch vue file format
+autocmd FileType vue syntax sync fromstart
+let g:vue_disable_pre_processors=1
