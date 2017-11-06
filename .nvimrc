@@ -19,6 +19,7 @@ Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
 Plug 'posva/vim-vue'
 Plug 'isRuslan/vim-es6'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
