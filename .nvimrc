@@ -5,8 +5,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/vim-github-dashboard'
 Plug 'pangloss/vim-javascript'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
@@ -19,9 +17,39 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mileszs/ack.vim'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
+Plug 'posva/vim-vue'
+Plug 'isRuslan/vim-es6'
+Plug 'mattn/emmet-vim'
+Plug 'mileszs/ack.vim'
+Plug 'mxw/vim-jsx'
+Plug 'rhysd/vim-clang-format'
 
 call plug#end()
 
+
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 1
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+set statusline=%{LinterStatus()}
+
+set clipboard+=unnamedplus
 set expandtab
 set backspace=indent,eol,start
 set autoindent                  " Indent at the same level of the previous line
@@ -31,7 +59,7 @@ set softtabstop=4               " Let backspace delete indent
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " a
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.,eol:$
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
 
 " Tabular
@@ -68,7 +96,8 @@ endif
 
 syntax enable
 let g:solarized_termcolors=256
-colorschem solarized
+color zenburn
+
 set background=dark
 " my nvim config
 set nu
@@ -106,22 +135,22 @@ let g:javascript_plugin_flow =                       1
 "let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 " ale eslint
-let g:ale_fixers = {
-\  'javascript': ['eslint'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_completion_enabled = 1
+"let g:ale_fixers = {
+"\  'javascript': ['eslint'],
+"\}
+""let g:ale_fix_on_save = 1
+"let g:ale_sign_error = '>>'
+"let g:ale_sign_warning = '--'
+"let g:ale_completion_enabled = 1
+"
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-autocmd bufwritepost *.js silent !eslint --fix %
+"autocmd bufwritepost *.js silent !eslint --fix %
 set autoread
 
 let g:airline#extensions#ale#enabled = 1
@@ -161,3 +190,37 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+let g:loaded_sql_completion = 0
+let g:omni_sql_no_default_maps = 1
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_user_command = ['.git/', 'git ls-files --cached --others  --exclude-standard %s', 'node_modules']
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" patch vue file format
+autocmd FileType vue syntax sync fromstart
+let g:vue_disable_pre_processors=1
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_open_list = 1
+" Set this if you want to.
+" This can be useful if you are combining ALE with
+" some other plugin which sets quickfix errors, etc.
+let g:ale_keep_list_window_open = 1
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+" Put these lines at the very end of your vimrc file.
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
