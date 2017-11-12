@@ -47,7 +47,7 @@ function! LinterStatus() abort
     \)
 endfunction
 
-set statusline=%{LinterStatus()}
+autocmd Bufread *.vue,*js set statusline=%{LinterStatus()}
 
 set clipboard+=unnamedplus
 set expandtab
