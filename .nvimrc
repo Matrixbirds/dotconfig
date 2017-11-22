@@ -21,8 +21,10 @@ Plug 'posva/vim-vue'
 Plug 'isRuslan/vim-es6'
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'rhysd/vim-clang-format'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -32,6 +34,7 @@ let g:ale_lint_on_text_changed = 'never'
 " You can disable this option too
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 1
 function! LinterStatus() abort
@@ -47,7 +50,7 @@ function! LinterStatus() abort
     \)
 endfunction
 
-autocmd Bufread *.vue,*js set statusline=%{LinterStatus()}
+"autocmd Bufread *.vue,*js set statusline=%{LinterStatus()}
 
 set clipboard+=unnamedplus
 set expandtab
@@ -140,9 +143,9 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \}
 ""let g:ale_fix_on_save = 1
-"let g:ale_sign_error = '>>'
-"let g:ale_sign_warning = '--'
-"let g:ale_completion_enabled = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_completion_enabled = 1
 "
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
