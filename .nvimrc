@@ -222,6 +222,8 @@ let g:ale_linters = {
 \}
 " Put these lines at the very end of your vimrc file.
 
+" enable jsx on js file
+let g:jsx_ext_required = 0
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
 packloadall
