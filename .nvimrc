@@ -35,7 +35,7 @@ let g:ale_lint_on_text_changed = 'never'
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-let g:ale_sign_column_always = 1
+let g:ale_sign_column_always = 0
 let g:ale_set_highlights = 1
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -157,8 +157,8 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "autocmd bufwritepost *.js silent !eslint --fix %
 set autoread
 
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 0
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '>'
 
@@ -210,17 +210,12 @@ let g:vue_disable_pre_processors=1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_open_list = 1
-" Set this if you want to.
-" This can be useful if you are combining ALE with
-" some other plugin which sets quickfix errors, etc.
-let g:ale_keep_list_window_open = 1
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
-" Put these lines at the very end of your vimrc file.
+let g:ale_open_list = 0
+let g:ale_keep_list_window_open = 0
 
 " enable jsx on js file
 let g:jsx_ext_required = 0
@@ -230,3 +225,8 @@ packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+" Put these lines at the very end of your vimrc file.
