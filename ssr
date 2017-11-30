@@ -1,0 +1,5 @@
+FROM breakwa11/shadowsocksr:latest
+
+WORKDIR $WORK/shadowsocksr-$BRANCH/shadowsocks
+
+CMD python local.py -s $SERVER_ADDR -p $SERVER_PORT -k $PASSWORD -m $METHOD -l $LOCAL_PORT -b $LOCAL_HOST --fast-open
