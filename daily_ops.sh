@@ -6,3 +6,6 @@ psql -h 127.0.0.1 -p <local-port> -U <username> <db_name> # after entered input 
 
 ## lsof 列出建立TCP链接到　xx　port的　相关进程
 lsof -n -i4TCP:<portno> | grep <process-id>
+
+## 在第${line}插入数据${text}
+sed -i "${line} i ${text}"
