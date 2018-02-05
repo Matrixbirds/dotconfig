@@ -25,6 +25,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'rhysd/vim-clang-format'
 Plug 'leafgarland/typescript-vim'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
