@@ -26,6 +26,10 @@ Plug 'mxw/vim-jsx'
 Plug 'rhysd/vim-clang-format'
 Plug 'leafgarland/typescript-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+Plug 'vim-scripts/taglist.vim'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
 call plug#end()
 
@@ -64,7 +68,19 @@ set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " a
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+set hlsearch
 
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+
+"TlistToggle
+nnoremap <silent> <F8> :TlistToggle<CR>
 
 " Tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
