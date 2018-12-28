@@ -30,6 +30,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'vim-scripts/taglist.vim'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'vim-erlang/vim-erlang-runtime'
 
 call plug#end()
 
